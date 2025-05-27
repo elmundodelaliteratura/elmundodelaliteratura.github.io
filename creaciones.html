@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Creaciones Literarias - Aurora</title>
+  <link rel="stylesheet" href="estilos.css">
+
+  <style>
+    /* Modal inicialmente oculto con opacidad 0 y sin interacción */
+    #modal {
+      position: fixed;
+      inset: 0;
+      background-color: rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      z-index: 1000;
+    }
+
+    /* Cuando está visible, permite interacción y opacidad 1 */
+    #modal.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-content {
+      background: white;
+      padding: 20px;
+      border-radius: 6px;
+      max-width: 500px;
+      width: 90%;
+      transform: scale(0.7);
+      opacity: 0;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    /* Modal content visible con zoom */
+    #modal.show .modal-content {
+      transform: scale(1);
+      opacity: 1;
+    }
+	
+	#creaciones {
+  margin-bottom: 2.5rem;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>El Mundo de la Literatura</h1>
+    <p>Revista Literaria</p>
+    <nav>
+      <ul>
+        <li><a href="index.html">Inicio</a></li>
+        <li><a href="#creaciones">Creaciones</a></li>
+        <li><a href="info.html">Acerca de</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <h2 id="creaciones">Creaciones Literarias</h2>
+    <div class="cards-container">
+
+      <div class="card" data-title="Poema: Agua" data-content="Cae, rumor invisible, sobre techos que recuerdan antiguos inviernos. Escribe su historia en la piedra. Y pasa. — Clara González">
+        <h3>Agua</h3>
+        <p class="preview">Cae, rumor invisible, sobre techos que recuerdan antiguos inviernos...</p>
+      </div>
+
+      <div class="card" data-title="Ensayo: El exilio interior" data-content="Un análisis profundo del universo poético de Pizarnik desde una perspectiva existencialista y simbólica. Explora la soledad y la búsqueda de sentido en la poesía de Alejandra Pizarnik.">
+        <h3>El exilio interior</h3>
+        <p class="preview">Un análisis profundo del universo poético de Pizarnik desde una perspectiva existencialista...</p>
+      </div>
+
+      <div class="card" data-title="Narrativa: La ciudad como personaje" data-content="Exploramos cómo Bogotá, Buenos Aires y Ciudad de México han sido narradas como sujetos vivos y contradictorios, mostrando la relación compleja entre espacio y persona en la literatura latinoamericana.">
+        <h3>La ciudad como personaje</h3>
+        <p class="preview">Exploramos cómo Bogotá, Buenos Aires y Ciudad de México han sido narradas como sujetos vivos...</p>
+      </div>
+
+      <div class="card" data-title="Relato: Ecos de la memoria" data-content="Una historia que recorre los rincones olvidados del tiempo y cómo los recuerdos moldean nuestra identidad.">
+        <h3>Ecos de la memoria</h3>
+        <p class="preview">Una historia que recorre los rincones olvidados del tiempo y cómo los recuerdos...</p>
+      </div>
+
+      <div class="card" data-title="Crónica: Voces urbanas" data-content="Reportaje que recoge testimonios y voces de jóvenes que construyen el futuro de la ciudad desde la periferia.">
+        <h3>Voces urbanas</h3>
+        <p class="preview">Reportaje que recoge testimonios y voces de jóvenes que construyen el futuro...</p>
+      </div>
+
+      <div class="card" data-title="Ensayo: El arte del silencio" data-content="Reflexión sobre la importancia del silencio en la creación artística y la vida cotidiana.">
+        <h3>El arte del silencio</h3>
+        <p class="preview">Reflexión sobre la importancia del silencio en la creación artística...</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+
+  </footer>
+
+  <!-- Modal ventana -->
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalContent">
+    <div class="modal-content">
+      <span class="modal-close" aria-label="Cerrar ventana" style="cursor:pointer; font-size:1.5rem;">&times;</span>
+      <h3 id="modalTitle"></h3>
+      <p id="modalContent"></p>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('modal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalContent = document.getElementById('modalContent');
+    const closeBtn = document.querySelector('.modal-close');
+    const cards = document.querySelectorAll('.card');
+
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        modalTitle.textContent = card.getAttribute('data-title');
+        modalContent.textContent = card.getAttribute('data-content');
+        modal.classList.add('show'); 
+        document.body.style.overflow = 'hidden';
+      });
+    });
+
+    closeBtn.addEventListener('click', () => {
+      modal.classList.remove('show');
+      document.body.style.overflow = 'auto';
+    });
+
+    window.addEventListener('click', (e) => {
+      if(e.target === modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === "Escape" && modal.classList.contains('show')) {
+        modal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+      }
+    });
+  </script>
+</body>
+</html>
