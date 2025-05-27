@@ -8,7 +8,6 @@
   <link rel="icon" type="image/x-icon" href="icon.png">
 
   <style>
- 
     #modal {
       position: fixed;
       inset: 0;
@@ -22,7 +21,6 @@
       z-index: 1000;
     }
 
-   
     #modal.show {
       opacity: 1;
       pointer-events: auto;
@@ -37,17 +35,17 @@
       transform: scale(0.7);
       opacity: 0;
       transition: transform 0.3s ease, opacity 0.3s ease;
+      white-space: pre-wrap; /* Respeta saltos de línea en el modal */
     }
 
-  
     #modal.show .modal-content {
       transform: scale(1);
       opacity: 1;
     }
 	
 	#creaciones {
-  margin-bottom: 2.5rem;
-}
+      margin-bottom: 2.5rem;
+    }
   </style>
 </head>
 <body>
@@ -225,11 +223,6 @@ No para ser ignoradas de forma macabras">
         <p class="preview">Reportaje que recoge testimonios y voces de jóvenes que construyen el futuro...</p>
       </div>
 
-      <div class="card" data-title="Ensayo: El arte del silencio" data-content="Reflexión sobre la importancia del silencio en la creación artística y la vida cotidiana.">
-        <h3>El arte del silencio</h3>
-        <p class="preview">Reflexión sobre la importancia del silencio en la creación artística...</p>
-      </div>
-
     </div>
   </main>
 
@@ -250,36 +243,5 @@ No para ser ignoradas de forma macabras">
     const modal = document.getElementById('modal');
     const modalTitle = document.getElementById('modalTitle');
     const modalContent = document.getElementById('modalContent');
-    const closeBtn = document.querySelector('.modal-close');
-    const cards = document.querySelectorAll('.card');
+    const closeBtn =
 
-    cards.forEach(card => {
-      card.addEventListener('click', () => {
-        modalTitle.textContent = card.getAttribute('data-title');
-        modalContent.textContent = card.getAttribute('data-content');
-        modal.classList.add('show'); 
-        document.body.style.overflow = 'hidden';
-      });
-    });
-
-    closeBtn.addEventListener('click', () => {
-      modal.classList.remove('show');
-      document.body.style.overflow = 'auto';
-    });
-
-    window.addEventListener('click', (e) => {
-      if(e.target === modal) {
-        modal.classList.remove('show');
-        document.body.style.overflow = 'auto';
-      }
-    });
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === "Escape" && modal.classList.contains('show')) {
-        modal.classList.remove('show');
-        document.body.style.overflow = 'auto';
-      }
-    });
-  </script>
-</body>
-</html>
