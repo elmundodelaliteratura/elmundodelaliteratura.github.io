@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Creaciones Literarias</title>
   <link rel="stylesheet" href="estilos.css">
+  <link rel="icon" type="image/x-icon" href="icon.png">
 
   <style>
-    /* Modal inicialmente oculto con opacidad 0 y sin interacción */
+ 
     #modal {
       position: fixed;
       inset: 0;
@@ -21,7 +22,7 @@
       z-index: 1000;
     }
 
-    /* Cuando está visible, permite interacción y opacidad 1 */
+   
     #modal.show {
       opacity: 1;
       pointer-events: auto;
@@ -38,7 +39,7 @@
       transition: transform 0.3s ease, opacity 0.3s ease;
     }
 
-    /* Modal content visible con zoom */
+  
     #modal.show .modal-content {
       transform: scale(1);
       opacity: 1;
@@ -103,7 +104,7 @@
 
   </footer>
 
-  <!-- Modal ventana -->
+
   <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-describedby="modalContent">
     <div class="modal-content">
       <span class="modal-close" aria-label="Cerrar ventana" style="cursor:pointer; font-size:1.5rem;">&times;</span>
